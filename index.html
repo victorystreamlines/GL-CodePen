@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GL-Code Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Add Font Awesome CDN as backup for layout icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" data-layout="horizontal">
+        <div class="header">
+            <h1>GL-Code Platform</h1>
+            <div class="actions">
+                <div class="layout-buttons">
+                    <button id="layout-horizontal" class="layout-btn active" title="Horizontal Layout">
+                        <i class="fas fa-columns"></i>
+                    </button>
+                    <button id="layout-vertical" class="layout-btn" title="Vertical Layout">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button id="layout-grid" class="layout-btn" title="Grid Layout">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button id="layout-result-only" class="layout-btn" title="Result Only">
+                        <i class="fas fa-play-circle"></i>
+                    </button>
+                </div>
+                <button id="run-btn">Run <i class="fas fa-play"></i></button>
+                <button id="save-btn">Save <i class="fas fa-save"></i></button>
+                <button id="clear-btn">Clear <i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        
+        <div class="editor-container">
+            <div class="editors">
+                <div class="editor">
+                    <div class="editor-header">
+                        <span>HTML</span>
+                    </div>
+                    <textarea id="html-code" placeholder="HTML Code"></textarea>
+                </div>
+                <div class="editor">
+                    <div class="editor-header">
+                        <span>CSS</span>
+                    </div>
+                    <textarea id="css-code" placeholder="CSS Code"></textarea>
+                </div>
+                <div class="editor">
+                    <div class="editor-header">
+                        <span>JavaScript</span>
+                    </div>
+                    <textarea id="js-code" placeholder="JavaScript Code"></textarea>
+                </div>
+            </div>
+            
+            <div class="result">
+                <div class="editor-header">
+                    <span>Output</span>
+                    <div class="resize-controls">
+                        <button id="resize-smaller" title="Make output smaller"><i class="fas fa-compress-alt"></i></button>
+                        <div class="size-input-container">
+                            <input type="number" id="size-percentage" min="20" max="100" value="50" step="5">
+                            <span>%</span>
+                        </div>
+                        <button id="resize-larger" title="Make output larger"><i class="fas fa-expand-alt"></i></button>
+                    </div>
+                </div>
+                <iframe id="result-frame"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

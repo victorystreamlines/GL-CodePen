@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1e1f26;
+    color: #f8f8f8;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #2d2e36;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    color: #61dafb;
+    font-size: 24px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.layout-buttons {
+    display: flex;
+    margin-right: 15px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #3e3f4a;
+}
+
+.layout-btn {
+    background-color: transparent;
+    color: #f8f8f8;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.layout-btn:hover {
+    background-color: #4a4b57;
+}
+
+.layout-btn.active {
+    background-color: #61dafb;
+    color: #1e1f26;
+}
+
+.actions button:not(.layout-btn) {
+    background-color: #61dafb;
+    color: #1e1f26;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.actions button:not(.layout-btn):hover {
+    background-color: #4fa8c9;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Horizontal Layout (Default) */
+.editors {
+    display: flex;
+    gap: 20px;
+    height: 300px;
+}
+
+.editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d2e36;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Vertical Layout */
+.container[data-layout="vertical"] .editors {
+    flex-direction: column;
+    height: auto;
+}
+
+.container[data-layout="vertical"] .editor {
+    height: 200px;
+}
+
+.container[data-layout="vertical"] .editor-container {
+    flex-direction: column;
+}
+
+/* Grid Layout */
+.container[data-layout="grid"] .editor-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    height: calc(100vh - 100px);
+}
+
+.container[data-layout="grid"] .editors {
+    display: contents;
+    height: auto;
+}
+
+.container[data-layout="grid"] .editor {
+    height: auto;
+}
+
+.container[data-layout="grid"] .result {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: auto;
+}
+
+/* Result Only Layout */
+.container[data-layout="result-only"] .editors {
+    display: none;
+}
+
+.container[data-layout="result-only"] .result {
+    height: calc(100vh - 100px);
+}
+
+.editor-header {
+    background-color: #3e3f4a;
+    padding: 10px;
+    font-weight: 500;
+    color: #f8f8f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resize-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.resize-controls button {
+    background: transparent;
+    border: none;
+    color: #f8f8f8;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.resize-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.size-input-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+
+#size-percentage {
+    width: 40px;
+    background: transparent;
+    border: none;
+    color: #f8f8f8;
+    font-size: 12px;
+    text-align: right;
+    padding: 0;
+    margin: 0;
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Hide spinner for other browsers */
+#size-percentage::-webkit-inner-spin-button, 
+#size-percentage::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.size-input-container span {
+    color: #bbb;
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+textarea {
+    flex: 1;
+    width: 100%;
+    padding: 15px;
+    background-color: #2d2e36;
+    border: none;
+    resize: none;
+    color: #f8f8f8;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    outline: none;
+}
+
+/* Result panel base styles */
+.result {
+    height: 300px;
+    background-color: #2d2e36;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    transition-delay: 0s;
+}
+
+/* Remove default width settings to avoid conflicts */
+.container .result {
+    /* Let JavaScript control the width completely */
+}
+
+/* Horizontal layout specific rules */
+.container[data-layout="horizontal"] .editor-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid layout with fixed result position */
+.container[data-layout="grid"] .result {
+    width: auto !important; /* Width controlled by grid template */
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: auto;
+}
+
+/* Result Only layout with full focus on result */
+.container[data-layout="result-only"] .result {
+    /* This will be overridden by inline style */
+}
+
+/* Important: Always prioritize inline styles set by JavaScript */
+.result[style*="width"] {
+    /* The inline style will take precedence */
+    margin: 0 auto !important;
+    transition: none !important;
+}
+
+#result-frame {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background-color: white;
+}
+
+/* Fix for horizontal layout with resizable result */
+.container[data-layout="horizontal"] .result {
+    width: 50%; /* Default width */
+    margin: 0 auto;
+    transition: width 0.3s ease;
+}
+
+/* Override the default 50% width for result panel when JS has set inline style */
+.container[data-layout="horizontal"] .result[style*="width"] {
+    margin: 0 auto;
+    transition: none !important;
+    will-change: width;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .actions {
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .layout-buttons {
+        margin-bottom: 10px;
+    }
+    
+    .editors {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .editor {
+        height: 200px;
+    }
+    
+    .container[data-layout="grid"] .editor-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .container[data-layout="grid"] .result {
+        grid-column: 1;
+        grid-row: auto;
+    }
+} 
